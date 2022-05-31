@@ -8,12 +8,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddTeamMemberPage {
 
     WebDriver driver;
-   // By txtFirstName = By.xpath("//*[@class=\"sc-jWBwVP etpAgO\"]//input[@data-testid=\"firstName\"]");
+   //By txtFirstName = By.xpath("//*[@class=\"sc-jWBwVP etpAgO\"]//input[@data-testid=\"firstName\"]");
     //By tabTeam = By.xpath("//*[@id=\"_next\"]/div/div[2]/div[2]/div[1]/div/div[1]/div[2]/div/div/div[3]/div/button[5]/span[1]");
     By txtFirstName = By.xpath("/html/body/div[4]/div[3]/div/div[2]/form/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input");
     By txtLastName = By.xpath("/html/body/div[4]/div[3]/div/div[2]/form/div/div/div/div/div/div/div[2]/div/div[2]/div[2]/input");
@@ -47,6 +48,17 @@ public class AddTeamMemberPage {
         setLastName(lName);
         setEmail(email);
         clkAddTeamMembers();
+
+    }
+
+    public List<String> getTeamMembersList(){
+        List<WebElement> teamMemberList = driver.findElements(By.xpath("//div[contains(@class, 'sc-gqjmRU grid-layout sc-')]/div"));
+        List<String> teamMemberEmailList = new ArrayList<>();
+        for(WebElement x: teamMemberList){
+            teamMemberEmailList.add(x.getAttribute("data-test"));
+        }
+
+        return teamMemberEmailList;
 
     }
 

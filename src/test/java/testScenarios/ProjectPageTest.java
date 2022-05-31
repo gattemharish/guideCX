@@ -6,10 +6,12 @@ import org.guideCX.pageobjects.LoginPage;
 import org.guideCX.pageobjects.ProjectPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ProjectPageTest {
@@ -38,6 +40,8 @@ public class ProjectPageTest {
         Thread.sleep(5000);
         addTeamMemberPage.AddTeamMembers("rt", "yu", "ddd@www.com");
         Thread.sleep(5000);
+        List<String> emailList = addTeamMemberPage.getTeamMembersList();
+        Assert.assertTrue(emailList.contains("options-ddd@www.com"));
     }
 
     @AfterTest
