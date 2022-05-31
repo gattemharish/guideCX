@@ -41,7 +41,6 @@ public class LoginPageTest {
         Thread.sleep(5000);
         Assert.assertEquals(driver.getTitle(), "Projects");
 
-
     }
 
     @AfterTest
