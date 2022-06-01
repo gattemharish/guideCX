@@ -3,12 +3,18 @@ package org.guideCX.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage{
 
     WebDriver driver;
-    By txtEmail = By.name("email");
-    By txtPassword = By.name("password");
+    public By txtEmail = By.name("email");
+    public By txtPassword = By.name("password");
     By btnLogin = By.xpath("//*[@id=\"__next\"]/div/div/div[1]/div/div/form/button");
 
     public LoginPage(WebDriver driver){
@@ -32,5 +38,6 @@ public class LoginPage{
         this.setPassword(password);
         this.clkLogin();
     }
+
 
 }

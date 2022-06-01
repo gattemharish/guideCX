@@ -18,8 +18,9 @@ public class AddTeamMemberPage {
     //By tabTeam = By.xpath("//*[@id=\"_next\"]/div/div[2]/div[2]/div[1]/div/div[1]/div[2]/div/div/div[3]/div/button[5]/span[1]");
     By txtFirstName = By.xpath("/html/body/div[4]/div[3]/div/div[2]/form/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/input");
     By txtLastName = By.xpath("/html/body/div[4]/div[3]/div/div[2]/form/div/div/div/div/div/div/div[2]/div/div[2]/div[2]/input");
-    By txtEmail = By.xpath("/html/body/div[4]/div[3]/div/div[2]/form/div/div/div/div/div/div/div[2]/div/div[3]/div/div[2]/input");
-    By btnAddTeamMembers = By.xpath("/html/body/div[4]/div[3]/div/div[3]/button");
+    public  By txtEmail = By.xpath("/html/body/div[4]/div[3]/div/div[2]/form/div/div/div/div/div/div/div[2]/div/div[3]/div/div[2]/input");
+    public By btnAddTeamMembers = By.xpath("/html/body/div[4]/div[3]/div/div[3]/button");
+
 
     public AddTeamMemberPage(WebDriver driver){
         this.driver = driver;
@@ -51,16 +52,6 @@ public class AddTeamMemberPage {
 
     }
 
-    public List<String> getTeamMembersList(){
-        List<WebElement> teamMemberList = driver.findElements(By.xpath("//div[contains(@class, 'sc-gqjmRU grid-layout sc-')]/div"));
-        List<String> teamMemberEmailList = new ArrayList<>();
-        for(WebElement x: teamMemberList){
-            teamMemberEmailList.add(x.getAttribute("data-test"));
-        }
-
-        return teamMemberEmailList;
-
-    }
 
 
 }

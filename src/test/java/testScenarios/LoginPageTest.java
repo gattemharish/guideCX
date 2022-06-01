@@ -1,50 +1,88 @@
 package testScenarios;
 
+import Utils.LoginUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.checkerframework.checker.units.qual.C;
-import org.guideCX.pageobjects.AddTeamMemberPage;
 import org.guideCX.pageobjects.LoginPage;
-import org.guideCX.pageobjects.ProjectPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.SourceType;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class LoginPageTest {
+public class LoginPageTest extends LoginUtil{
+
     WebDriver driver;
+    WebDriverWait wait;
 
-
-    @BeforeTest
-    public void beforetest() throws InterruptedException {
+    @BeforeMethod
+    public void beforeMethod() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://app.staging.guidecx.io/auth/login");
+        driver.get(loginUrl);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
     @Test
-    public void LoginTest() throws InterruptedException {
+    public void LoginTestHappyPath() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
-        ProjectPage projectPage = new ProjectPage(driver);
-        AddTeamMemberPage addTeamMemberPage = new AddTeamMemberPage(driver);
-        loginPage.loginToGuideCX("harishkumargattem@gmail.com", "Guidecx_379");
-
-        String ff = driver.getTitle();
-        System.out.println(ff);
-        Thread.sleep(5000);
-        Assert.assertEquals(driver.getTitle(), "Projects");
-
+        loginPage.loginToGuideCX(userName, password);
+        wait.until(ExpectedConditions.titleIs(homePageTitle));
+        String pageTitle = driver.getTitle();
+        Assert.assertEquals(pageTitle, homePageTitle);
     }
 
-    @AfterTest
-    public void afterTest(){
+    @Test
+    public void LoginTestInValidEmailScenario1(){
+        LoginPage loginPage = new LoginPage(driver);
+        String inValidEmail = "har";
+        loginPage.loginToGuideCX(inValidEmail, "dfd");
+        String validationMessage = driver.findElement(loginPage.txtEmail).getAttribute("validationMessage");
+        System.out.println(validationMessage);
+        Assert.assertTrue(validationMessage.contains(emailValidationMessage1));
+    }
+
+    @Test
+    public void LoginTestInValidEmailScenario2(){
+        LoginPage loginPage = new LoginPage(driver);
+        String inValidEmail = "har@";
+        loginPage.loginToGuideCX(inValidEmail, "dfd");
+        String validationMessage = driver.findElement(loginPage.txtEmail).getAttribute("validationMessage");
+        Assert.assertTrue(validationMessage.contains(emailValidationMessage2));
+    }
+
+    @Test
+    public void LoginTestEmptyEmail(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.loginToGuideCX("", "dfd");
+        String validationMessage = driver.findElement(loginPage.txtEmail).getAttribute("validationMessage");
+        Assert.assertTrue(validationMessage.contains(emailValidationMessage3));
+    }
+
+    @Test
+    public void LoginTestEmptyPassword(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.loginToGuideCX(userName, "");
+        String validationMessage = driver.findElement(loginPage.txtPassword).getAttribute("validationMessage");
+        System.out.println(validationMessage);
+        Assert.assertTrue(validationMessage.contains(emailValidationMessage3));
+    }
+
+    @Test
+    public void LoginTestIncorrectEmailAndPassword(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.loginToGuideCX("har@ff.com", "dfddfd");
+        Assert.assertEquals(driver.getCurrentUrl(), loginUrl);
+    }
+
+    @AfterMethod
+    public void afterMethod(){
         driver.quit();
     }
 
