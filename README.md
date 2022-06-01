@@ -6,7 +6,7 @@ This project contains automated tests that validates below functionalities of Gu
   2. Add team member to Project: 2 tests
 
 The tests are designed using page object pattern, where locator objects and test scripts
-are stored in seperate packages like in below screenshot
+are stored in seperate packages for easy maintainability and re-usability. See below screenshot
 
 ![image](https://user-images.githubusercontent.com/106559104/171323826-c30342bd-8143-4018-b7c1-141db6bb2f83.png)
 
