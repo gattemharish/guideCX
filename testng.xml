@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="D:/guideCX"><classes><class name="testScenarios.AddTeamMemberPageTest"><methods><include name="addTeamMemberTestHappyPath"/><include name="addTeamMemberTestInValidEmail"/></methods></class><class name="testScenarios.LoginPageTest"><methods><include name="LoginTestHappyPath"/><include name="LoginTestInValidEmailScenario1"/><include name="LoginTestInValidEmailScenario2"/><include name="LoginTestEmptyEmail"/><include name="LoginTestEmptyPassword"/><include name="LoginTestIncorrectEmailAndPassword"/></methods></class></classes></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Testing GuideCx App">
+    <test name="Regression">
+        <classes>
+            <class name="testScenarios.LoginPageTest"/>
+            <class name="testScenarios.AddTeamMemberPageTest"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->
