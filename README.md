@@ -6,7 +6,8 @@ This project contains automated tests that validates below functionalities of Gu
   2. Add team member to Project: 2 tests
 
 The tests are designed using page object pattern, where locator objects and test scripts
-are stored seperately like in below screenshot
+are stored in seperate packages like in below screenshot
+
 ![image](https://user-images.githubusercontent.com/106559104/171323826-c30342bd-8143-4018-b7c1-141db6bb2f83.png)
 
 ## Prerequisites to run the tests
@@ -20,8 +21,8 @@ Project and platform Java SDK version should be 1.8
 mvn test
 ```
 ## Reports
-Report of test execution can be found at target/surefire-reports/index.html
+Report of test execution can be found at target/surefire-reports/index.html or target/surefire-reports/emailable-report.html
 
-## To-DO
-1. There are couple of places where still thread.sleep is used instead of explicit waits.
-2. More negative tests can be added to AddTeamMemberPageTest
+## TO DO
+1. There is one place in AddTeamMemberPageTest.java class where still thread.sleep is used instead of explicit wait. It needs to be changed
+2. More negative tests can be added to AddTeamMemberPageTest.java
