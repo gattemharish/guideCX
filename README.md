@@ -11,7 +11,13 @@ are stored in seperate packages for easy maintainability and re-usability. See b
 ![image](https://user-images.githubusercontent.com/106559104/171323826-c30342bd-8143-4018-b7c1-141db6bb2f83.png)
 
 ## Prerequisites to run the tests
-Project and platform Java SDK version should be 1.8
+1. Project and platform Java SDK version should be 1.8
+2. Set below environment variables in your local
+```
+GuideCxUserName
+GuideCxPassword
+```
+
 ## How to run the tests
 1. From Intellij, Once you clone the github repository, you can right click on testng.xml and click on Run
 ![image](https://user-images.githubusercontent.com/106559104/171324242-a20c0b46-6f7b-4ea0-8824-89e778e93cd2.png)
@@ -21,8 +27,11 @@ Project and platform Java SDK version should be 1.8
 mvn test
 ```
 ## Reports
-Report of test execution can be found at target/surefire-reports/index.html or target/surefire-reports/emailable-report.html
+Report of test execution can be found at target/surefire-reports/index.html or target/surefire-reports/emailable-report.html. sample report below
+
+![image](https://user-images.githubusercontent.com/106559104/171326059-8e68946e-7691-4e50-acab-a17ae64c46e2.png)
 
 ## TO DO
 1. There is one place in AddTeamMemberPageTest.java class where still thread.sleep is used instead of explicit wait. It needs to be changed
 2. More negative tests can be added to AddTeamMemberPageTest.java
+3. Better reporting
