@@ -17,6 +17,8 @@ are stored in seperate packages for easy maintainability and re-usability. See b
 GuideCxUserName
 GuideCxPassword
 ```
+## Branching
+There are two branches. master and development. The later branch contains all the tests
 
 ## How to run the tests
 1. From Intellij, Once you clone the github repository, you can right click on testng.xml and click on Run
@@ -35,3 +37,4 @@ Report of test execution can be found at target/surefire-reports/index.html or t
 1. There is one place in AddTeamMemberPageTest.java class where still thread.sleep is used instead of explicit wait. It needs to be changed
 2. More negative tests can be added to AddTeamMemberPageTest.java
 3. Better reporting
+4. Merge to master branch.
